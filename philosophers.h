@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 21:22:22 by antdelga          #+#    #+#             */
-/*   Updated: 2023/08/27 21:42:42 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/09/04 19:27:24 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,48 +18,42 @@
 # include <unistd.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <limits.h> 
 
-typedef struct data
+typedef struct table
 {
-	int				n_philos;
-	int				time_dead;
-	int				time_eat;
-	int				time_sleep;
-	int				n_eats;
-	short int		ends;
-	short int		stop;
-	long			time_start;
-	pthread_mutex_t	talk;
-	pthread_mutex_t	stop_mutex;
+	int				num_p;
+	int				msg_die;
+	int				msg_eat;
+	int				msg_sleep;
+	int				n_must_eat;
+	long			now;
+	short int		advance;
+	short int		finish;
+	pthread_mutex_t	speak;
+	pthread_mutex_t	advance_mtx;
 	pthread_t		starvation;
-}				t_data;
+}				t_table;
 
 typedef struct philo
 {
-	int					id;
-	int					n_meals;
-	int					last_meal;
+	int					philo_dni;
+	int					num_eats;
+	int					when_last_eat;
 	pthread_t			thread;
 	pthread_mutex_t		fork_r;
 	pthread_mutex_t		*fork_l;
 	pthread_mutex_t		mutex_eat;
-	t_data				*data;
-}				t_philos;
+	t_table				*table;
+}				t_ph;
 
-/* INPUT */
-int		check_args(int narg, char **argv);
-int		check_input(int narg, char **argv, t_data *data, t_philos *philo);
+/* CHECK INPUT AND CREATE VARIABLES*/
+int	check_arg(int argc, char **argv);
+int	create_table(int argc, char **argv, t_table *table);
+int	create_philo(int index, t_table *table, t_ph *philos);
 
 /* UTILS */
-void	ft_exit_error(char *msg);
-int		timer(void);
-void	ft_usleep(int ms, t_philos *philo);
-
-/* THREADS */
-void	*philo_thread(void *arg);
-void	*check_thread(void	*param);
-void	printf_mutex(char *str, t_philos *philo);
-void	*exception(void *arg);
-void	close_and_clean(t_philos *philo);
+int	ft_atoi_philo(char *str);
+int	get_time(void);
 
 #endif
