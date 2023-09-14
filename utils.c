@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 18:55:06 by antdelga          #+#    #+#             */
-/*   Updated: 2023/09/04 19:27:16 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/09/06 18:53:26 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_atoi_philo(char *str)
 	return (number);
 }
 
-int	get_time(void)
+int	ft_get_time(void)
 {
 	struct timeval	actual_time;
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+         #
+#    By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 19:39:00 by antdelga          #+#    #+#              #
-#    Updated: 2023/08/27 21:05:38 by antdelga         ###   ########.fr        #
+#    Updated: 2023/09/14 19:22:57 by antdelga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ SRC = main.c \
 	  check_input.c \
 	  utils.c \
 	  threads.c \
+	  messages.c \
 	  threads_utils.c \
+	  die.c \
 	  
 
 OBJ = $(SRC:.c=.o)

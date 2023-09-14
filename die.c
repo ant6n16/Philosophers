@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   threads.c                                          :+:      :+:    :+:   */
+/*   die.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/06 19:09:43 by antdelga          #+#    #+#             */
-/*   Updated: 2023/09/14 18:55:49 by antdelga         ###   ########.fr       */
+/*   Created: 2023/09/14 19:00:19 by antdelga          #+#    #+#             */
+/*   Updated: 2023/09/14 19:36:41 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	*one_philo(void *arg)
+void	*check_one_philo_die(void *arg)
 {
-	t_ph	*p;
+	t_ph	*philo;
 
-	p = (t_ph *)arg;
-	printf_think(p);
-	pthread_mutex_lock(&p->table->advance_mtx);
-	while (p->table->advance == 1)
+	philo = (t_ph *) arg;
+	if (ft_get_time() > philo[0].table->msg_die)
 	{
-		pthread_mutex_unlock(&p->table->advance_mtx);
-		usleep(1);
-		pthread_mutex_lock(&p->table->advance_mtx);
+		printf("Aqui\n");
+		pthread_mutex_lock(&philo->table->advance_mtx);
+		philo->table->advance = 0;
+		pthread_mutex_unlock(&philo->table->advance_mtx);
+		pthread_mutex_lock(&philo->table->speak);
+		printf("%d %d is dead\n", ft_get_time(), philo[0].philo_dni);
+		pthread_mutex_unlock(&philo[0].table->speak);
+		pthread_exit(NULL);
 	}
-	pthread_mutex_unlock(&p->table->advance_mtx);
 	pthread_exit(NULL);
 }
