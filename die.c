@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   die.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 19:00:19 by antdelga          #+#    #+#             */
-/*   Updated: 2023/09/14 19:36:41 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/09/16 21:37:33 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*check_one_philo_die(void *arg)
 	philo = (t_ph *) arg;
 	if (ft_get_time() > philo[0].table->msg_die)
 	{
-		printf("Aqui\n");
+		printf("Entre\n");
 		pthread_mutex_lock(&philo->table->advance_mtx);
 		philo->table->advance = 0;
 		pthread_mutex_unlock(&philo->table->advance_mtx);

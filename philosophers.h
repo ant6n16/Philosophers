@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 21:22:22 by antdelga          #+#    #+#             */
-/*   Updated: 2023/09/14 19:22:36 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/09/16 21:08:34 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct table
 	int				msg_eat;
 	int				msg_sleep;
 	int				n_must_eat;
-	long			now;
+	int				now;
 	short int		advance;
 	short int		finish;
 	pthread_mutex_t	speak;
@@ -55,6 +55,7 @@ int		create_philo(t_table *table, t_ph *philos);
 /* UTILS */
 int		ft_atoi_philo(char *str);
 int		ft_get_time(void);
+void	print_all_info(t_table *table, t_ph *philo);
 
 /* PRINTS */
 void	printf_fork(t_ph *p);

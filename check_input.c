@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 18:12:17 by antdelga          #+#    #+#             */
-/*   Updated: 2023/09/13 20:29:45 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/09/16 21:05:38 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,11 @@ int	create_philo(t_table *table, t_ph *philos)
 	int	index;
 
 	index = 0;
-	philos = (t_ph *) malloc(sizeof(t_ph) * table->num_p);
 	while (index < table->num_p)
 	{
 		philos[index].philo_dni = index + 1;
 		philos[index].num_eats = 0;
-		philos[index].when_last_eat = 0;
+		philos[index].when_last_eat = ft_get_time();
 		philos[index].table = table;
 		if (pthread_mutex_init(&philos[index].fork_r, NULL))
 			return (printf("Error when creating mutex\n"), -1);
