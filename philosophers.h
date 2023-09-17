@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 21:22:22 by antdelga          #+#    #+#             */
-/*   Updated: 2023/09/16 21:08:34 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/09/17 15:11:04 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ typedef struct table
 	int				msg_sleep;
 	int				n_must_eat;
 	int				now;
-	short int		advance;
-	short int		finish;
-	pthread_mutex_t	speak;
+	int				advance;
+	int				finish;
+	pthread_mutex_t	print_mtx;
 	pthread_mutex_t	advance_mtx;
-	pthread_t		starvation;
+	pthread_t		die;
 }				t_table;
 
 typedef struct philo
@@ -43,7 +43,7 @@ typedef struct philo
 	pthread_t			thread;
 	pthread_mutex_t		fork_r;
 	pthread_mutex_t		*fork_l;
-	pthread_mutex_t		mutex_eat;
+	pthread_mutex_t		eat_mtx;
 	t_table				*table;
 }				t_ph;
 
@@ -54,8 +54,8 @@ int		create_philo(t_table *table, t_ph *philos);
 
 /* UTILS */
 int		ft_atoi_philo(char *str);
-int		ft_get_time(void);
 void	print_all_info(t_table *table, t_ph *philo);
+int	 	ft_get_time(void);
 
 /* PRINTS */
 void	printf_fork(t_ph *p);

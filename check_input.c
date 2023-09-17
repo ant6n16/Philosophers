@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 18:12:17 by antdelga          #+#    #+#             */
-/*   Updated: 2023/09/16 21:05:38 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/09/17 15:12:04 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ int	create_philo(t_table *table, t_ph *philos)
 		philos[index].table = table;
 		if (pthread_mutex_init(&philos[index].fork_r, NULL))
 			return (printf("Error when creating mutex\n"), -1);
-		if (pthread_mutex_init(&philos[index].mutex_eat, NULL))
+		if (pthread_mutex_init(&philos[index].eat_mtx, NULL))
 			return (printf("Error when creating mutex\n"), -1);
 		if (index != 0)
 			philos[index].fork_l = &philos[index - 1].fork_r;
 		index++;
 	}
 	philos[0].fork_l = &philos[index - 1].fork_r;
-	if (pthread_mutex_init(&philos->table->speak, NULL))
+	if (pthread_mutex_init(&philos->table->print_mtx, NULL))
 		return (printf("Error when creating mutex\n"), -1);
 	if (pthread_mutex_init(&philos->table->advance_mtx, NULL))
 		return (printf("Error when creating mutex\n"), -1);
