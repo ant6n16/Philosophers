@@ -37,10 +37,10 @@ int	create_table(int argc, char **argv, t_table *table)
 	if (argc == 6)
 	{
 		table->n_must_eat = ft_atoi_philo(argv[5]);
-		table->finish = 1;
+		table->early_finish = 1;
 	}
 	else
-		table->finish = 0;
+		table->early_finish = 0;
 	table->num_p = ft_atoi_philo(argv[1]);
 	if (table->num_p == 0)
 		return (printf("Error: 0 philosophers is not valid\n"), -1);
