@@ -82,4 +82,5 @@ void	join_threads(t_ph *p)
 	}
 	pthread_mutex_destroy(&p->table->print_mtx);
 	pthread_mutex_destroy(&p->table->advance_mtx);
+	free(p);
 }
