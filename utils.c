@@ -14,19 +14,19 @@
 
 int	ft_atoi_philo(char *str)
 {
-	long	number;
-	int		i;
+	int		index;
+	long	result;
 
-	number = 0;
-	i = 0;
-	while (str[i] >= '0' && str[i] <= '9')
+	result = 0;
+	index = 0;
+	while (str[index] >= '0' && str[index] <= '9')
 	{
-		number = (number * 10) + (str[i] - '0');
-		i++;
+		result = (result * 10) + (str[index] - '0');
+		if (result > INT_MAX)
+			return (printf("Only INT range values allowed\n"), -1);
+		index++;
 	}
-	if (number > INT_MAX)
-		return (printf("Only INT range values allowed\n"), -1);
-	return (number);
+	return (result);
 }
 
 int	ft_get_time(void)

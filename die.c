@@ -12,54 +12,6 @@
 
 #include "philosophers.h"
 
-/* int	check_death(t_ph *p)
-{
-	int	time;
-    int i;
-
-    i = -1;
-	while (++i < p->table->num_p)
-	{
-		pthread_mutex_lock(&p[i].eat_mtx);
-		time = ft_get_time() - p[i].when_last_eat;
-		if (time > p[i].table->msg_die)
-		{
-			pthread_mutex_lock(&p->table->advance_mtx);
-			p->table->advance = 0;
-			pthread_mutex_unlock(&p->table->advance_mtx);
-			pthread_mutex_unlock(&p[i].eat_mtx);
-			printf_die(p);
-            return (0);
-		}
-	}
-	return (1);
-}
-
-void	*check_thread(void	*param)
-{
-	t_ph	*p;
-
-	p = (t_ph *)param;
-	pthread_mutex_lock(&p->table->advance_mtx);
-	while (p->table->advance == 1)
-	{
-		pthread_mutex_unlock(&p->table->advance_mtx);
-		usleep(10);
-		if (check_death(p))
-			return (NULL);
-        if (p->table->early_finish == 1)
-        {
-            pthread_mutex_lock(&p->table->advance_mtx);
-            p->table->advance = 0;
-            pthread_mutex_unlock(&p->table->advance_mtx);
-            return (NULL);
-        }
-		pthread_mutex_lock(&p->table->advance_mtx);
-	}
-	pthread_mutex_unlock(&p->table->advance_mtx);
-	return (NULL);
-} */
-
 void	eat(t_ph *p)
 {
 	if (p->philo_dni % 2 == 1)

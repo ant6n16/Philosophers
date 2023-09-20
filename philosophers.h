@@ -67,11 +67,10 @@ void	printf_die(t_ph *p);
 
 /* THREADAS */
 void	*one_philo(void *arg);
-/* void	*more_philos(void *arg);
-void	eat_process(t_ph *p); */
 void	*check_thread(void	*param);
 void	*philo_thread(void *arg);
 void	eat(t_ph *p);
+void	join_threads(t_ph *p);
 
 
 #endif

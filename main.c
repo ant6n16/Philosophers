@@ -23,33 +23,21 @@ int	main(int argc, char **argv)
 	philos = (t_ph *) malloc(sizeof(t_ph) * table.num_p);
 	if (create_philo(&table, philos))
 		return (-1);
-	table.now = ft_get_time();
-	if (table.num_p == 1)
-	{
-		if (pthread_create(&philos[0].thread, NULL, one_philo, &philos[0]))
-			return (printf("Error creating threads\n"), -1);
-	}
-	else
-	{
+	// if (table.num_p == 1)
+	// {
+	// 	if (pthread_create(&philos[0].thread, NULL, one_philo, &philos[0]))
+	// 		return (printf("Error creating threads\n"), -1);
+	// }
+	// else
+	// {
 		i = -1;
 		while (++i < table.num_p)
 			if (pthread_create(&philos[i].thread, NULL, philo_thread, &philos[i]))
 				return (printf("Error creating threads\n"), -1);
 		if (pthread_create(&table.die_no_eat, NULL, check_thread, philos))
 			return (printf("Error creating threads\n"), -1);
-	}
-	i = -1;
-	while (++i < philos->table->num_p)
-		pthread_join(philos[i].thread, NULL);
-	pthread_join(philos->table->die_no_eat, NULL);
-	i = -1;
-	while (++i < philos->table->num_p)
-	{
-		pthread_mutex_destroy(&philos[i].fork_r);
-		pthread_mutex_destroy(&philos[i].eat_mtx);
-	}
-	pthread_mutex_destroy(&philos->table->print_mtx);
-	pthread_mutex_destroy(&philos->table->advance_mtx);
+	// }
+	join_threads(philos);
 	return (0);
 }
 

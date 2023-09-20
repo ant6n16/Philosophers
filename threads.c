@@ -32,55 +32,6 @@ void	*one_philo(void *arg)
 	pthread_exit(NULL);
 }
 
-/* void	eat_process(t_ph *p)
-{
-	if (p->philo_dni % 2 == 1)
-	{
-		pthread_mutex_lock(&p->fork_r);
-		printf_fork(p);
-		pthread_mutex_lock(p->fork_l);
-		printf_fork(p);
-	}
-	else
-	{
-		pthread_mutex_lock(p->fork_l);
-		printf_fork(p);
-		pthread_mutex_lock(&p->fork_r);
-		printf_fork(p);
-	}
-	pthread_mutex_lock(&p->eat_mtx);
-	printf_eating(p);
-	p->when_last_eat = ft_get_time();
-	p->num_eats = p->num_eats + 1;
-	pthread_mutex_unlock(&p->eat_mtx);
-	// ft_usleep(p->table->msg_eat, p);
-	usleep(p->table->msg_eat);
-	pthread_mutex_unlock(p->fork_l);
-	pthread_mutex_unlock(&p->fork_r);
-}
-
-void	*more_philos(void *arg)
-{
-	t_ph	*p;
-
-	p = (t_ph *) arg;
-	pthread_mutex_lock(&p->table->advance_mtx);
-	while (p->table->advance == 1)
-	{
-		pthread_mutex_unlock(&p->table->advance_mtx);
-		eat_process(p);
-		printf_sleep(p);
-		// ft_usleep(p->table->msg_sleep, p);
-		usleep(p->table->msg_sleep);
-		if (p->table->msg_sleep == 0)
-			usleep(1);
-		printf_think(p);
-		pthread_mutex_lock(&p->table->advance_mtx);
-	}
-	pthread_mutex_unlock(&p->table->advance_mtx);
-	pthread_exit(NULL);
-} */
-
 void	*philo_thread(void *arg)
 {
 	t_ph	*p;
@@ -102,3 +53,20 @@ void	*philo_thread(void *arg)
 	pthread_exit(NULL);
 }
 
+void	join_threads(t_ph *p)
+{
+	int	i;
+
+	i = -1;
+	while (++i < p->table->num_p)
+		pthread_join(p[i].thread, NULL);
+	pthread_join(p->table->die_no_eat, NULL);
+	i = -1;
+	while (++i < p->table->num_p)
+	{
+		pthread_mutex_destroy(&p[i].fork_r);
+		pthread_mutex_destroy(&p[i].eat_mtx);
+	}
+	pthread_mutex_destroy(&p->table->print_mtx);
+	pthread_mutex_destroy(&p->table->advance_mtx);
+}
