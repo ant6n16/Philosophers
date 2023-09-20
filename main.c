@@ -23,20 +23,12 @@ int	main(int argc, char **argv)
 	philos = (t_ph *) malloc(sizeof(t_ph) * table.num_p);
 	if (create_philo(&table, philos))
 		return (-1);
-	// if (table.num_p == 1)
-	// {
-	// 	if (pthread_create(&philos[0].thread, NULL, one_philo, &philos[0]))
-	// 		return (printf("Error creating threads\n"), -1);
-	// }
-	// else
-	// {
-		i = -1;
-		while (++i < table.num_p)
-			if (pthread_create(&philos[i].thread, NULL, philo_thread, &philos[i]))
-				return (printf("Error creating threads\n"), -1);
-		if (pthread_create(&table.die_no_eat, NULL, check_thread, philos))
+	i = -1;
+	while (++i < table.num_p)
+		if (pthread_create(&philos[i].thread, NULL, philo_thread, &philos[i]))
 			return (printf("Error creating threads\n"), -1);
-	// }
+	if (pthread_create(&table.die_no_eat, NULL, check_thread, philos))
+		return (printf("Error creating threads\n"), -1);
 	join_threads(philos);
 	return (0);
 }

@@ -66,11 +66,12 @@ void	printf_think(t_ph *p);
 void	printf_die(t_ph *p);
 
 /* THREADAS */
-void	*one_philo(void *arg);
-void	*check_thread(void	*param);
 void	*philo_thread(void *arg);
-void	eat(t_ph *p);
+void	ft_eating(t_ph *p);
+void	one_philo(t_ph *p);
+void	*check_thread(void	*param);
+int		someone_die(t_ph *p);
+int		check_n_meals(t_ph *p);
 void	join_threads(t_ph *p);
-
 
 #endif
