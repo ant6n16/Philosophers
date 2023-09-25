@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:09:43 by antdelga          #+#    #+#             */
-/*   Updated: 2023/09/19 19:27:46 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/09/25 21:13:18 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_eating(t_ph *p)
 	{
 		pthread_mutex_lock(&p->fork_r);
 		printf_fork(p);
-		
 		if (p->table->num_p == 1)
 			one_philo(p);
 		pthread_mutex_lock(p->fork_l);

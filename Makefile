@@ -6,12 +6,13 @@
 #    By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 19:39:00 by antdelga          #+#    #+#              #
-#    Updated: 2023/09/14 19:22:57 by antdelga         ###   ########.fr        #
+#    Updated: 2023/09/25 21:19:04 by antdelga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Werror -Wextra -pthread $(SANITIZE)
+SANITIZE = -fsanitize=thread -g
 
 SRC = main.c \
 	  check_input.c \
@@ -24,7 +25,7 @@ SRC = main.c \
 
 OBJ = $(SRC:.c=.o)
 
-EXECUTABLE = philosophers
+EXECUTABLE = philo
 
 all: $(EXECUTABLE)
 
