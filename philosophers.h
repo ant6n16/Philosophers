@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 21:22:22 by antdelga          #+#    #+#             */
-/*   Updated: 2023/09/19 19:27:16 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/09/26 18:26:41 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		create_philo(t_table *table, t_ph *philos);
 /* UTILS */
 int		ft_atoi_philo(char *str);
 void	print_all_info(t_table *table, t_ph *philo);
-int	 	ft_get_time(void);
+int		ft_get_time(void);
 void	ft_usleep(int ms, t_ph *p);
 
 /* PRINTS */

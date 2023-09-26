@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 19:00:19 by antdelga          #+#    #+#             */
-/*   Updated: 2023/09/25 21:22:33 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/09/26 18:40:38 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,27 @@ int	someone_die(t_ph *p)
 int	check_n_meals(t_ph *p)
 {
 	int	index;
+	int	cont;
 
+	cont = 0;
 	index = -1;
 	while (++index < p->table->num_p)
 	{
 		pthread_mutex_lock(&p[index].eat_mtx);
-		if (p[index].num_eats == p->table->n_must_eat)
-		{
-			pthread_mutex_unlock(&p[index].eat_mtx);
-			pthread_mutex_lock(&p->table->advance_mtx);
-			p->table->advance = 0;
-			pthread_mutex_unlock(&p->table->advance_mtx);
-			return (1);
-		}
-		pthread_mutex_unlock(&p[index].eat_mtx);
+		if (p[index].num_eats != p->table->n_must_eat)
+			break ;
+		else
+			cont++;
 	}
+	if (cont == p->table->num_p)
+	{
+		pthread_mutex_lock(&p->table->advance_mtx);
+		p->table->advance = 0;
+		pthread_mutex_unlock(&p->table->advance_mtx);
+		pthread_mutex_unlock(&p[index].eat_mtx);
+		return (1);
+	}
+	pthread_mutex_unlock(&p[index].eat_mtx);
 	return (0);
 }
 

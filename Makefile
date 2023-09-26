@@ -6,7 +6,7 @@
 #    By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 19:39:00 by antdelga          #+#    #+#              #
-#    Updated: 2023/09/25 21:19:04 by antdelga         ###   ########.fr        #
+#    Updated: 2023/09/26 18:32:46 by antdelga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ SRC = main.c \
 	  utils.c \
 	  threads.c \
 	  messages.c \
-	  threads_utils.c \
 	  die.c \
 	  
 
