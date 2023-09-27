@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 18:55:06 by antdelga          #+#    #+#             */
-/*   Updated: 2023/09/19 18:47:14 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/09/27 20:33:08 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ void	print_all_info(t_table *table, t_ph *philo)
 	printf("Now: %d\n", table->now);
 	printf("Advance: %d\n", table->advance);
 	printf("Early Finish: %d\n", table->early_finish);
-
 	while (++index < table->num_p)
 	{
 		printf("Philo id: %d\n", philo[index].philo_dni);
 		printf("Philo %d num eats: %d\n", index + 1, philo[index].num_eats);
-		printf("Philo %d time last eat: %d\n", index + 1, philo[index].when_last_eat);
+		printf("Philo %d time last eat: \
+			%d\n", index + 1, philo[index].when_last_eat);
 	}
 }
 

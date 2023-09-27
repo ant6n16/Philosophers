@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/14 19:00:19 by antdelga          #+#    #+#             */
-/*   Updated: 2023/09/26 18:40:38 by antdelga         ###   ########.fr       */
+/*   Created: 2023/09/27 19:17:49 by antdelga          #+#    #+#             */
+/*   Updated: 2023/09/27 20:30:59 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	someone_die(t_ph *p)
+int	someone_die(t_ph *p, int *flag)
 {
 	int	index;
 
@@ -32,6 +32,9 @@ int	someone_die(t_ph *p)
 			return (1);
 		}
 		pthread_mutex_unlock(&p->table->advance_mtx);
+		if (p->table->early_finish == 1 \
+			&& p[index].num_eats < p->table->n_must_eat)
+			*(flag) = 1;
 		pthread_mutex_unlock(&p[index].eat_mtx);
 	}
 	return (0);
@@ -39,44 +42,30 @@ int	someone_die(t_ph *p)
 
 int	check_n_meals(t_ph *p)
 {
-	int	index;
-	int	cont;
-
-	cont = 0;
-	index = -1;
-	while (++index < p->table->num_p)
-	{
-		pthread_mutex_lock(&p[index].eat_mtx);
-		if (p[index].num_eats != p->table->n_must_eat)
-			break ;
-		else
-			cont++;
-	}
-	if (cont == p->table->num_p)
-	{
-		pthread_mutex_lock(&p->table->advance_mtx);
-		p->table->advance = 0;
-		pthread_mutex_unlock(&p->table->advance_mtx);
-		pthread_mutex_unlock(&p[index].eat_mtx);
-		return (1);
-	}
-	pthread_mutex_unlock(&p[index].eat_mtx);
-	return (0);
+	pthread_mutex_lock(&p->table->advance_mtx);
+	p->table->advance = 0;
+	pthread_mutex_unlock(&p->table->advance_mtx);
+	pthread_mutex_lock(&p->table->print_mtx);
+	printf("Everyone has eaten\n");
+	pthread_mutex_unlock(&p->table->print_mtx);
+	return (1);
 }
 
 void	*check_thread(void *param)
 {
 	t_ph	*p;
+	int		flag;
 
 	p = (t_ph *)param;
 	pthread_mutex_lock(&p->table->advance_mtx);
 	while (p->table->advance)
 	{
 		pthread_mutex_unlock(&p->table->advance_mtx);
+		flag = 0;
 		usleep(10);
-		if (someone_die(p))
+		if (someone_die(p, &flag))
 			return (NULL);
-		if (p->table->early_finish)
+		if (p->table->early_finish && flag == 0)
 			if (check_n_meals(p))
 				return (NULL);
 		pthread_mutex_lock(&p->table->advance_mtx);

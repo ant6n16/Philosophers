@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 21:22:22 by antdelga          #+#    #+#             */
-/*   Updated: 2023/09/26 18:26:41 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/09/27 19:57:25 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	*philo_thread(void *arg);
 void	ft_eating(t_ph *p);
 void	one_philo(t_ph *p);
 void	*check_thread(void	*param);
-int		someone_die(t_ph *p);
+int		someone_die(t_ph *p, int *flag);
 int		check_n_meals(t_ph *p);
 void	join_threads(t_ph *p);
 

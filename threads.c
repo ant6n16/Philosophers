@@ -6,7 +6,7 @@
 /*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:09:43 by antdelga          #+#    #+#             */
-/*   Updated: 2023/09/25 21:13:18 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/09/27 20:32:38 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	*philo_thread(void *arg)
 		ft_eating(p);
 		printf_sleep(p);
 		ft_usleep(p->table->msg_sleep, p);
+		if (p->table->msg_sleep == 0)
+			usleep(1);
 		printf_think(p);
 		pthread_mutex_lock(&p->table->advance_mtx);
 	}
