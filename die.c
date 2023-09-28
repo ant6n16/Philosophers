@@ -46,7 +46,7 @@ int	check_n_meals(t_ph *p)
 	p->table->advance = 0;
 	pthread_mutex_unlock(&p->table->advance_mtx);
 	pthread_mutex_lock(&p->table->print_mtx);
-	printf("Everyone has eaten\n");
+	printf("Everyone has eaten %d times\n", p->table->n_must_eat);
 	pthread_mutex_unlock(&p->table->print_mtx);
 	return (1);
 }

@@ -35,7 +35,7 @@ $(EXECUTABLE): $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(EXECUTABLE)
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(EXECUTABLE)
