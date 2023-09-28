@@ -57,6 +57,7 @@ int		ft_atoi_philo(char *str);
 void	print_all_info(t_table *table, t_ph *philo);
 int		ft_get_time(void);
 void	ft_usleep(int ms, t_ph *p);
+void	ft_leaks(void);
 
 /* PRINTS */
 void	printf_fork(t_ph *p);
@@ -70,7 +71,7 @@ void	*philo_thread(void *arg);
 void	ft_eating(t_ph *p);
 void	one_philo(t_ph *p);
 void	*check_thread(void	*param);
-int		someone_die(t_ph *p, int *flag);
+int		someone_die(t_ph *p, int *detect);
 int		check_n_meals(t_ph *p);
 void	join_threads(t_ph *p);
 

@@ -32,5 +32,3 @@ int	main(int argc, char **argv)
 	join_threads(philos);
 	return (0);
 }
-
-// NORMINETTE, CHEQUEAR LEAKS, DATARACES...

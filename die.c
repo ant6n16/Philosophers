@@ -12,7 +12,7 @@
 
 #include "philosophers.h"
 
-int	someone_die(t_ph *p, int *flag)
+int	someone_die(t_ph *p, int *detect)
 {
 	int	index;
 
@@ -32,9 +32,9 @@ int	someone_die(t_ph *p, int *flag)
 			return (1);
 		}
 		pthread_mutex_unlock(&p->table->advance_mtx);
-		if (p->table->early_finish == 1 \
+		if (p->table->early_finish \
 			&& p[index].num_eats < p->table->n_must_eat)
-			*(flag) = 1;
+			*detect = 0;
 		pthread_mutex_unlock(&p[index].eat_mtx);
 	}
 	return (0);
@@ -53,19 +53,19 @@ int	check_n_meals(t_ph *p)
 
 void	*check_thread(void *param)
 {
+	int		detect;
 	t_ph	*p;
-	int		flag;
 
 	p = (t_ph *)param;
 	pthread_mutex_lock(&p->table->advance_mtx);
 	while (p->table->advance)
 	{
 		pthread_mutex_unlock(&p->table->advance_mtx);
-		flag = 0;
+		detect = 1;
 		usleep(10);
-		if (someone_die(p, &flag))
+		if (someone_die(p, &detect))
 			return (NULL);
-		if (p->table->early_finish && flag == 0)
+		if (p->table->early_finish && detect)
 			if (check_n_meals(p))
 				return (NULL);
 		pthread_mutex_lock(&p->table->advance_mtx);

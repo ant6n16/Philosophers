@@ -74,3 +74,8 @@ void	ft_usleep(int ms, t_ph *p)
 	}
 	pthread_mutex_unlock(&p->table->advance_mtx);
 }
+
+void	ft_leaks(void)
+{
+	system("leaks -q philo");
+}

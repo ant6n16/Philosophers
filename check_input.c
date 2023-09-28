@@ -41,6 +41,8 @@ int	create_table(int argc, char **argv, t_table *table)
 	{
 		table->n_must_eat = ft_atoi_philo(argv[5]);
 		table->early_finish = 1;
+		if (table->n_must_eat == -1)
+			return (-1);
 	}
 	else
 		table->early_finish = 0;
@@ -50,6 +52,8 @@ int	create_table(int argc, char **argv, t_table *table)
 	table->msg_die = ft_atoi_philo(argv[2]);
 	table->msg_eat = ft_atoi_philo(argv[3]);
 	table->msg_sleep = ft_atoi_philo(argv[4]);
+	if (table->msg_die == -1 || table->msg_eat == -1 || table->msg_sleep == -1)
+		return (-1);
 	table->advance = 1;
 	return (0);
 }

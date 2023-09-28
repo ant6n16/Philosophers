@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -pthread #$(SANITIZE)
+CFLAGS = -Wall -Werror -Wextra -pthread $(SANITIZE)
 SANITIZE = -fsanitize=thread -g
 
 SRC = main.c \
@@ -21,7 +21,6 @@ SRC = main.c \
 	  messages.c \
 	  die.c \
 	  
-
 OBJ = $(SRC:.c=.o)
 
 EXECUTABLE = philo
