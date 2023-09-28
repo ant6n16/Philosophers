@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antdelga <antdelga@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: antdelga <antdelga@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 18:12:17 by antdelga          #+#    #+#             */
-/*   Updated: 2023/09/17 15:12:04 by antdelga         ###   ########.fr       */
+/*   Updated: 2023/09/28 19:07:41 by antdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
